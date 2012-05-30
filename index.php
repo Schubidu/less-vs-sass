@@ -1,6 +1,6 @@
 <?php
-$types = array('less', 'sass', 'compass');
-$type = (isset($_GET['t']) && in_array($_GET['t'], $types)) ? '-' . $_GET['t'] : '';
+$types = array('official', 'less', 'sass', 'compass');
+$type = (isset($_GET['t']) && in_array($_GET['t'], $types) && $_GET['t'] !== $types[0]) ? '-' . $_GET['t'] : '';
 ?><!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js .ie6 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -33,7 +33,15 @@ $type = (isset($_GET['t']) && in_array($_GET['t'], $types)) ? '-' . $_GET['t'] :
 </header>
 <nav>
     <ul>
-        <?php foreach($types as $_type);?>
+        <?php foreach ($types as $_type): ?>
+        <li>
+            <?php if (strpos($type, $_type) || ($type === '' && $_type === $types[0])): ?>
+            <span><?php echo $_type ?></span>
+            <?php else: ?>
+            <a href="/?t=<?php echo $_type ?>"><?php echo $_type ?></a>
+            <?php endif; ?>
+        </li>
+        <?php endforeach; ?>
     </ul>
 </nav>
 <article>
