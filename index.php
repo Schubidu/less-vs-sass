@@ -1,11 +1,11 @@
 <?php
-$types = array('less', 'sass');
+$types = array('less', 'sass', 'compass');
 $type = (isset($_GET['t']) && in_array($_GET['t'], $types)) ? '-' . $_GET['t'] : '';
 ?><!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lt IE 7]> <html class="no-js .ie6 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js .ie7 lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js .ie8 lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
@@ -33,9 +33,7 @@ $type = (isset($_GET['t']) && in_array($_GET['t'], $types)) ? '-' . $_GET['t'] :
 </header>
 <nav>
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Imprint</a></li>
+        <?php foreach($types as $_type);?>
     </ul>
 </nav>
 <article>
