@@ -1,5 +1,6 @@
 <?php
-$type = (isset($_GET['t'])) ? $_GET['t'] : 'less';
+$types = array('less', 'sass');
+$type = (isset($_GET['t']) && in_array($_GET['t'], $types)) ? '-' . $_GET['t'] : '';
 ?><!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -22,13 +23,13 @@ $type = (isset($_GET['t'])) ? $_GET['t'] : 'less';
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style<?php echo $type ?>.css">
 
     <script src="js/vendor/modernizr-2.5.3.min.js"></script>
 </head>
 <body>
 <header>
-    <img class="logo" src="/images/logo.png" alt="myLogo" />
+    <img class="logo" src="/images/logo.png" alt="myLogo"/>
 </header>
 <nav>
     <ul>

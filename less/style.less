@@ -1,0 +1,57 @@
+@import 'mixins.less';
+
+* {
+    .box-sizing(border-box);
+}
+
+html, body {
+    width: 100%;
+    #gradient .vertical-three-colors(rgba(254, 254, 253, 1), 0%, rgba(220, 227, 196, 1), 42%, rgba(174, 191, 118, 1));
+}
+
+body {
+    max-width: 48em;
+    margin: 0 auto;
+    .clearfix();
+    .box-shadow(0 0 20px #000);
+    #gradient .vertical(rgba(249, 252, 247, 1) 0%, rgba(245, 249, 240, 1) 100%);
+}
+
+nav {
+    ul, li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+}
+
+nav, article {
+    float: left;
+    width: 20%;
+    padding: 0 10px;
+}
+
+nav + article {
+    width: 80%;
+}
+
+article h1 {
+    margin-top: 0;
+}
+
+footer {
+    clear: both;
+    background: #999;
+    color: #fff;
+    padding: 3px 5px;
+    font-size: .8em;
+    text-align: right;
+}
+
+.logo {
+    width: 20%;
+    max-width: 400px;
+}
+
+
+
