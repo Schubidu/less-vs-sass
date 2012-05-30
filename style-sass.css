@@ -1,9 +1,0 @@
-html, body {
-  width: 100%;
-  background: linear-gradient(top, #fefefd 0%, #dce3c4 42%, #aebf76 100%); }
-
-body {
-  max-width: 48em;
-  margin: 0 auto;
-  box-shadow: 0 0 20px #000;
-  background: linear-gradient(top, #f9fcf7 0%, #f5f9f0 100%); }
