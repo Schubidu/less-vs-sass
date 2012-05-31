@@ -1,6 +1,23 @@
 <?php
+// choose css-file;
 $types = array('official', 'less', 'sass', 'compass');
-$type = (isset($_GET['t']) && in_array($_GET['t'], $types) && $_GET['t'] !== $types[0]) ? '-' . $_GET['t'] : '';
+$type = (isset($_GET['t']) && in_array($_GET['t'], $types) && $_GET['t'] !== $types[0]) ? $_GET['t'] : '';
+if ($type === '') {
+    $type = $types[0];
+}
+//build cssFile Infos
+    clearstatcache();
+$cssFiles = array();
+foreach ($types as $_type) {
+    $fileName = 'css/style-' . $_type . '.css';
+    if(file_exists($fileName)){
+        $fileSize = filesize($fileName);
+        $cssFiles[$_type] = array(
+            'name' => $fileName,
+            'filesize' => $fileSize,
+        );
+    }
+}
 ?><!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js .ie6 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -23,7 +40,7 @@ $type = (isset($_GET['t']) && in_array($_GET['t'], $types) && $_GET['t'] !== $ty
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-    <link rel="stylesheet" href="css/style<?php echo $type ?>.css">
+    <link rel="stylesheet" href="<?php echo $cssFiles[$type]['name'] ?>">
 
     <script src="js/vendor/modernizr-2.5.3.min.js"></script>
 </head>
@@ -33,12 +50,13 @@ $type = (isset($_GET['t']) && in_array($_GET['t'], $types) && $_GET['t'] !== $ty
 </header>
 <nav>
     <ul>
-        <?php foreach ($types as $_type): ?>
+        <?php foreach ($cssFiles as $key => $item): ?>
+        <?php $name = $key . ' (' . $item['filesize'] . ' B)' ?>
         <li>
-            <?php if (strpos($type, $_type) || ($type === '' && $_type === $types[0])): ?>
-            <span><?php echo $_type ?></span>
+            <?php if ($key === $item): ?>
+            <span><?php echo $name ?></span>
             <?php else: ?>
-            <a href="/?t=<?php echo $_type ?>"><?php echo $_type ?></a>
+            <a href="/?t=<?php echo $key ?>"><?php echo $name ?></a>
             <?php endif; ?>
         </li>
         <?php endforeach; ?>
