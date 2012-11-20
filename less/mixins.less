@@ -1,0 +1,54 @@
+// Clearfix
+// --------
+// For clearing floats like a boss h5bp.com/q
+.clearfix() {
+    *zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// Drop shadows
+.box-shadow(@shadow: 0 0px 10px rgba(0,0,0,.2)) {
+    -webkit-box-shadow: @shadow;
+    -moz-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
+
+// Box sizing
+.box-sizing(@boxmodel) {
+    -webkit-box-sizing: @boxmodel;
+    -moz-box-sizing: @boxmodel;
+    box-sizing: @boxmodel;
+}
+
+// Gradients
+#gradient {
+    .vertical(@startColor: #555555, @endColor: #333333) {
+    //background-color: mix(@startColor, @endColor, 60%);
+        background-image: -moz-linear-gradient(top, @startColor, @endColor); // FF 3.6+
+        background-image: -ms-linear-gradient(top, @startColor, @endColor); // IE10
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
+        background-image: -webkit-linear-gradient(top, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+        background-image: -o-linear-gradient(top, @startColor, @endColor); // Opera 11.10
+        background-image: linear-gradient(top, @startColor, @endColor); // The standard
+        background-repeat: repeat-x;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor)); // IE9 and down
+    }
+    .vertical-three-colors(@startColor: #6FB6E3,@colorStop1: 70%, @midColor: #67AADA, @colorStop2: 90%, @endColor: #5593C9) {
+    //background-color: mix(@midColor, @endColor, 70%);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@colorStop1, @startColor), color-stop(@colorStop2, @midColor), to(@endColor));
+        background-image: -webkit-linear-gradient(top, @startColor @colorStop1, @midColor @colorStop2, @endColor 100%);
+        background-image: -moz-linear-gradient(top, @startColor @colorStop1, @midColor @colorStop2, @endColor 100%);
+        background-image: -ms-linear-gradient(top, @startColor @colorStop1, @midColor @colorStop2, @endColor 100%);
+        background-image: -o-linear-gradient(top, @startColor @colorStop1, @midColor @colorStop2, @endColor 100%);
+        background-image: linear-gradient(top, @startColor @colorStop1, @midColor @colorStop2, @endColor 100%);
+        background-repeat: no-repeat;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor)); // IE9 and down, gets no color-stop at all for proper fallback
+    }
+}
